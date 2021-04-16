@@ -14,6 +14,7 @@
 	<body>
 		{{-- hearder --}}
 		@include('layouts.header')
+
 		{{-- menu --}}
 		@include('layouts.menu')
 		{{-- content --}}

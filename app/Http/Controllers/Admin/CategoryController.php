@@ -20,7 +20,7 @@ class CategoryController extends Controller
         //method: get
         $categories = Category::get();
         // dd($categories);
-        return view('category.index', ['categories' => $categories]);
+        return view('auth.admin.category.index', ['categories' => $categories]);
 
     }
 
@@ -32,7 +32,7 @@ class CategoryController extends Controller
     public function create()
     {
         //method:get
-        return view('category.create');
+        return view('auth.admin.category.create');
     }
 
     /**
@@ -65,11 +65,11 @@ class CategoryController extends Controller
 
             // insert into data to table category (successful)
             DB::commit();
-            return redirect()->route('category.index')->with('success', 'Insert into data to Category Successful.');
+            return redirect()->route('admin.category.index')->with('success', 'Insert into data to Category Successful.');
         } catch (\Exception $ex) {
             // insert into data to table category (fail)
             DB::rollBack();
-            return redirect()->route('category.index')->with('error', $ex->getMessage());
+            return redirect()->route('admin.category.index')->with('error', $ex->getMessage());
         }
     }
 
@@ -85,7 +85,7 @@ class CategoryController extends Controller
         $categoryDetails = Category::find($id);
 
         // insert into data to table category (successful)
-        return view('category.details',['categoryDetails'=>$categoryDetails]);
+        return view('auth.admin.category.details',['categoryDetails'=>$categoryDetails]);
         
     }
 
@@ -103,7 +103,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $data['category'] = $category;
 
-        return view('category.edit', $data);
+        return view('auth.admin.category.edit', $data);
         
     }
 
@@ -134,16 +134,12 @@ class CategoryController extends Controller
             // $category->save(); 
             // update data to table category (successful)
             DB::commit();
-            return redirect()->route('category.index')->with('success','Update data category success');
+            return redirect()->route('admin.category.index')->with('success','Update data category success');
         } catch (\Exception $ex) {
             // update data to table category (fail)
             DB::rollBack();
             return redirect()->back()->with('error', $ex->getMessage());
-        }
-        
-        
-        
-        
+        }     
     }
 
     /**
@@ -163,7 +159,7 @@ class CategoryController extends Controller
             $category->delete();   
             // Delete data to table category (successful)
             DB::commit();
-            return redirect()->route('category.index')->with('success','Delete data category success');
+            return redirect()->route('admin.category.index')->with('success','Delete data category success');
         } catch (\Exception $ex) {
             // insert into data to table category (fail)
             DB::rollBack();
@@ -179,6 +175,19 @@ class CategoryController extends Controller
         // get list data of table categories
         $data['categories'] = $categories;
         // dd($posts);
-        return view('category.index', $data);
+        return view('auth.admin.category.index', $data);
+    }
+    public function search_ajax(Request $request){
+        $data = [];
+        $categoryName = $request->category_name;
+        if (!empty($categoryName)) {
+            $categories = Category::where('category_name', 'LIKE', '%' . $categoryName . '%')
+                ->get();
+        } else {
+            $categories = Category::get();
+        }
+
+        $data['categories'] = $categories;
+        return response()->json($data);
     }
 }

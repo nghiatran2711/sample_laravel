@@ -24,7 +24,7 @@ class UserController extends Controller
         $data=[];
         $users=User::orderBy('id','desc')->paginate(5);
         $data['users']=$users;
-        return view('user.index',$data);
+        return view('auth.admin.user.index',$data);
     }
 
     /**
@@ -35,7 +35,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('user.create');
+        return view('auth.admin.user.create');
     }
 
     /**
@@ -56,10 +56,10 @@ class UserController extends Controller
         try{
             User::create($userInsert);
             DB::commit();
-            return redirect()->route('user.index')->with('success','Insert user success');
+            return redirect()->route('admin.user.index')->with('success','Insert user success');
         }catch(\Exception $ex){
             DB::rollBack();
-            return redirect()->route('user.create')->with('error',$ex->getMessage());
+            return redirect()->route('admin.user.create')->with('error',$ex->getMessage());
         }
     }
 
@@ -76,7 +76,7 @@ class UserController extends Controller
         $userDetails=User::findOrFail($id);
         $data['userDetails'] = $userDetails;
 
-        return view('user.details', $data);
+        return view('auth.admin.user.details', $data);
     }
 
     /**
@@ -92,7 +92,7 @@ class UserController extends Controller
         $user= User::findOrFail($id);
         $data['user'] = $user;
 
-        return view('user.edit', $data);
+        return view('auth.admin.user.edit', $data);
     }
 
     /**
@@ -115,7 +115,7 @@ class UserController extends Controller
             User::where('id',$id)->update($updateUser);     
             // update data to table user (successful)
             DB::commit();
-            return redirect()->route('user.index')->with('success','Update data user success');
+            return redirect()->route('admin.user.index')->with('success','Update data user success');
         } catch (\Exception $ex) {
             // update data to table user (fail)
             DB::rollBack();
@@ -139,7 +139,7 @@ class UserController extends Controller
             $user->delete();   
             // Delete data to table user (successful)
             DB::commit();
-            return redirect()->route('user.index')->with('success','Delete data user success');
+            return redirect()->route('admin.user.index')->with('success','Delete data user success');
         } catch (\Exception $ex) {
             // insert into data to table user (fail)
             DB::rollBack();

@@ -3,5 +3,9 @@
 {{-- <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css"> --}}
 <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('all.css') }}">
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
 {{-- declare other file css --}}
 @stack('css')

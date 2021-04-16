@@ -8,8 +8,11 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -36,7 +39,7 @@ class PostController extends Controller
         // $posts=Post::with('category')->paginate(2); // with lấy category model (function được định nghĩa ở Post Model)
         $category=Category::pluck('category_name','id')->toArray();
         // dd($posts);
-        return view('post.index',['posts' => $posts,'category'=>$category]);
+        return view('auth.admin.post.index',['posts' => $posts,'category'=>$category]);
     }
 
     /**
@@ -50,7 +53,7 @@ class PostController extends Controller
         // $category=Category::get();
         $category=Category::pluck('category_name','id')->toArray();
         // dd($category);
-        return view('post.create',['category'=>$category]);
+        return view('auth.admin.post.create',['category'=>$category]);
     }
 
     /**
@@ -84,10 +87,10 @@ class PostController extends Controller
             $post->thumbnail=$path;
             $post->save();
             DB::commit();
-            return redirect()->route('post.index')->with('success','Store post success');
+            return redirect()->route('admin.post.index')->with('success','Store post success');
         } catch(\Exception $ex){
             DB::rollback();
-            return redirect()->route('post.create')->with('error',$ex->getMessage());
+            return redirect()->route('admin.post.create')->with('error',$ex->getMessage());
         }
 
     }
@@ -103,7 +106,7 @@ class PostController extends Controller
         //
         $postDetails=Post::with('category')->where('id',$id)->first();
         // dd($postDetails);
-        return view('post.details',['postDetails'=>$postDetails]);
+        return view('auth.admin.post.details',['postDetails'=>$postDetails]);
     }
 
     /**
@@ -120,7 +123,7 @@ class PostController extends Controller
         $data=[];
         $post=Post::findOrFail($id);
         $data['post']=$post;
-        return view('post.edit',$data,['category'=>$category]);
+        return view('auth.admin.post.edit',$data,['category'=>$category]);
     }
 
     /**
@@ -133,21 +136,47 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, $id)
     {
         //
-        $post_name=$request->post_name;
-        $post_content=$request->post_content;
-        $category_id=$request->category_id;
+        $post = Post::find($id);
+        $postDetailId = $post->post_detail ? $post->post_detail->id : null;
+        
+        $thumbnailOld = $post->thumbnail;
+        $post->post_name=$request->post_name;
+        $post->category_id=$request->category_id;
+        $thumbnailPath = null;
 
+        if ($request->hasFile('thumbnail') 
+        && $request->file('thumbnail')->isValid()) {
+        // Nếu có thì thục hiện lưu trữ file vào public/thumbnail
+            $image = $request->file('thumbnail');
+            $extension = $request->thumbnail->extension();
+            $fileName = 'thumbnail_' . time() . '.' . $extension;
+            $thumbnailPath = $image->move('images', $fileName);
+            $post->thumbnail = $thumbnailPath;
+            Log::info('thumbnailPath: ' . $thumbnailPath);
+        }
         DB::beginTransaction();
         try {
-            $post=Post::find($id);
-            $post->post_name=$post_name;
-            $post->post_content=$post_content;
-            $post->category_id=$category_id;
             $post->save();
+            $dataDetailPost = [
+                'content' => $request->content,
+                'post_id' => $id,
+            ];
+            if (!$postDetailId) { // create
+                $postDetail = new PostDetail($dataDetailPost);
+                $postDetail->save();
+            } else { // update
+                PostDetail::find($postDetailId)
+                    ->update($dataDetailPost);
+            }
             DB::commit();
-            return redirect()->route('post.index')->with('success','Update post success');
+             // SAVE OK then delete OLD file
+             if (File::exists(public_path($thumbnailOld))) {
+                File::delete(public_path($thumbnailOld));
+            }
+            return redirect()->route('admin.post.index')->with('success','Update post success');
         } catch(\Exception $ex){
             DB::rollback();
+            dd($ex->getMessage());
             return redirect()->back()->with('error',$ex->getMessage());
         }
     }
@@ -165,7 +194,7 @@ class PostController extends Controller
         try {
         $delete_row=Post::where('id', $id)->delete();
         DB::commit();
-        return redirect()->route('post.index')->with('success','Delete post success');
+        return redirect()->route('admin.post.index')->with('success','Delete post success');
         } catch (\Exception $ex) {
             // insert into data to table category (fail)
             DB::rollBack();
@@ -186,6 +215,6 @@ class PostController extends Controller
         $data['category'] = $categories;
         // dd($posts);
         $data['posts'] = $posts;
-        return view('post.index', $data);
+        return view('auth.admin.post.index', $data);
     }
 }

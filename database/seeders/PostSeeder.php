@@ -22,10 +22,10 @@ class PostSeeder extends Seeder
             foreach ($categories as $category) {
                 $dataInsert = [
                     'post_name' => Str::random(40),
-                    'post_content' => Str::random(1000),
                     'category_id' => $category->id,
                     'created_at' => $date,
                     'updated_at' => $date,
+                    'thumbnail'=> 'https://placeimg.com/100/100/any',
                 ];
                 DB::table('posts')->insert($dataInsert);
             }

@@ -26,7 +26,6 @@ class UpdatePostRequest extends FormRequest
         return [
             //
             'post_name' => 'required|min:5|max:255',
-            'post_content' => 'required|min:10',
             'category_id'=>'required',
         ];
     }
