@@ -1,10 +1,10 @@
-@extends('layouts.master')
+@extends('auth.admin.dashboard')
 {{-- import file css (private) --}}
 @section('title','Details Category')
 @push('css')
     
 @endpush
-@section('content')
+@section('content-admin')
 <h1 id="category-list">CATEGORY DETAILS</h1>
 <p>Category ID: {{ $categoryDetails->id }}</p>
 <p>Category Name: {{ $categoryDetails->category_name }}</p>

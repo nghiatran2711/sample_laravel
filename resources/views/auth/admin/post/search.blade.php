@@ -1,7 +1,6 @@
 <form class="row g-3" action="{{ route('admin.post.index') }}" method="GET">
   @include('errors.error')
     <div class="col-auto">
-      <label for="inputPassword2" class="visually-hidden">Password</label>
       <select class="form-select" aria-label="Default select example" name="category_id">
         <option value=""></option>
         @foreach ($category as $key => $value )  

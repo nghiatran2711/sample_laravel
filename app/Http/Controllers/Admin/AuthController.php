@@ -78,12 +78,12 @@ class AuthController extends Controller
     //  *
     //  * @return \Illuminate\Http\Response
     //  */
-    public function logout()
+    public function logout(Request $request)
     {
         auth()->guard('admin')->logout();
         \Session::flush();
         \Session::put('lsuccess','You are logout successfully');        
-        return redirect(route('admin.login'));
+        return redirect()->route('admin.login');
     }
 
     /**

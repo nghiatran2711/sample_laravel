@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         //method: get
-        $categories = Category::get();
+        $categories = Category::paginate(5);
         // dd($categories);
         return view('auth.admin.category.index', ['categories' => $categories]);
 
@@ -177,17 +177,17 @@ class CategoryController extends Controller
         // dd($posts);
         return view('auth.admin.category.index', $data);
     }
-    public function search_ajax(Request $request){
-        $data = [];
-        $categoryName = $request->category_name;
-        if (!empty($categoryName)) {
-            $categories = Category::where('category_name', 'LIKE', '%' . $categoryName . '%')
-                ->get();
-        } else {
-            $categories = Category::get();
-        }
+    // public function search_ajax(Request $request){
+    //     $data = [];
+    //     $categoryName = $request->category_name;
+    //     if (!empty($categoryName)) {
+    //         $categories = Category::where('category_name', 'LIKE', '%' . $categoryName . '%')
+    //             ->get();
+    //     } else {
+    //         $categories = Category::get();
+    //     }
 
-        $data['categories'] = $categories;
-        return response()->json($data);
-    }
+    //     $data['categories'] = $categories;
+    //     return response()->json($data);
+    // }
 }

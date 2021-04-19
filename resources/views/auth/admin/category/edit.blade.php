@@ -1,32 +1,59 @@
-@extends('layouts.master')
+@extends('auth.admin.dashboard')
 @section('title','Edit Category')
-@section('content')
-	<h1>EDIT CATEGORY</h1>
-
-	{{-- Cách 1 --}}
+@section('content-admin')
 	@include('errors.error')
-	{{-- Cách 2 --}}
-	{{-- @if($errors->any())
-    	 implode('', $errors->all('<div>:message</div>')) }}
-	@endif --}}
 	@if (Session::has('error'))
       <div class="alert alert-danger">
           {{ Session::has('error') }}
       </div>
     @endif
-	<form class="row g-3" action="{{route('admin.category.update',['id'=>$category->id])}}" method="POST">
-		@csrf
-        @method('PUT')
-	  <div class="col-md-6">
-	    <label for="inputEmail4" class="form-label">Category name</label>
-	    <input type="text" name="category_name" class="form-control" id="inputEmail4" value="{{ $category->category_name }}">
-		@error('category_name')
-    		<div class="alert alert-danger">{{ $message }}</div>
-		@enderror
-	</div>
-	  <div class="col-12">
-	    <button type="submit" class="btn btn-primary">Update</button>
-	    <a href="{{route('admin.category.index')}}" class="btn btn-info">List Category</a>
-	  </div>
-	</form>
+	<section class="content-header">
+		<div class="container-fluid">
+		  <div class="row mb-2">
+			<div class="col-sm-6">
+			  <h1>Edit Category</h1>
+			</div>
+			<div class="col-sm-6">
+			  <ol class="breadcrumb float-sm-right">
+				<li class="breadcrumb-item"><a href="#">Home</a></li>
+				<li class="breadcrumb-item active">Edit Category</li>
+			  </ol>
+			</div>
+		  </div>
+		</div><!-- /.container-fluid -->
+	  </section>
+    <!-- Main content -->
+    <section class="content">
+		<div class="container-fluid">
+		  <div class="row">
+			<!-- left column -->
+			<div class="col-md-12">
+			  <!-- general form elements -->
+			  <div class="card card-primary">
+				<!-- /.card-header -->
+				<!-- form start -->
+				@include('errors.error')
+				<form action="{{route('admin.category.update',['id'=>$category->id])}}" method="POST">
+					@csrf
+					@method('PUT')
+				  <div class="card-body">
+					<div class="form-group">
+					  	<label for="exampleInputEmail1">Category Name</label>
+					  	<input type="text" name="category_name" class="form-control" id="exampleInputEmail1" value="{{ $category->category_name }}">
+					  	@error('category_name')
+					  		<div class="alert alert-danger">{{ $message }}</div>
+				  		@enderror
+					</div>
+				  </div>
+				  <div class="card-footer">
+					<button type="submit" class="btn btn-primary">Update Category</button>
+				  </div>
+				</form>
+			  </div>
+			  <!-- /.card -->
+		  </div>
+		  <!-- /.row -->
+		</div><!-- /.container-fluid -->
+	  </section>
+	  <!-- /.content -->
 @endsection
