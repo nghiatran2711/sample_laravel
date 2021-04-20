@@ -60,6 +60,11 @@
 								@endforeach
 							</select>
 						</div>
+						<div class="form-group">           
+							<label>Content</label>
+							<textarea name="content" id="" cols="143" rows="5"></textarea>
+						</div>
+
 						<div class="form-group">
 							<label for="inputEmail4" class="form-label">Image</label>
 							<img src="{{ asset($post->thumbnail) }}" alt="" width="300px">

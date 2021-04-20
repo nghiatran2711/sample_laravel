@@ -1,0 +1,215 @@
+.header-top{
+	width: 100%;
+	background-color: #383838;
+	color: #a9a9a9;
+	height: 40px;
+	padding-top: 6px;
+}
+
+.header-top li{
+	list-style: none;
+	display: inline;
+}
+.header-top li.top-emai{
+	float: left;
+}
+.header-top li.top-account{
+	float: right;
+	margin-right: 20px;
+}
+.header-top li.top-account a{
+	text-decoration: none;
+	color: #a9a9a9;
+}
+.header-top li.top-search{
+	float: right;
+}
+.header-top li.top-search input{
+	width: 230px;
+	height: 30px;
+	background-color: #383838;
+	border: none;
+}
+li.top-search button{
+	width: 30px;
+	height: 29px;
+	background-color: #383838;
+	color: #a9a9a9;
+	position: relative;
+    left: -5px;
+	border: none;
+}
+.header-bottom{
+	width: 100%;
+	height: 100px;
+	padding-top: 25px;
+}
+.header-bottom .nav-menu{
+	margin-left: 310px;
+}
+.cart{
+	border: solid 1px #7aaedd;
+	height: 40px;
+	margin-left: 20px;
+}
+.cart i{
+	background-color: #7aaedd;
+	padding:11px;
+	color: white;
+}
+.category{
+	border: solid 1px #e8e8e8;
+}
+.category ul li{
+	list-style: none;
+	padding-top:10px; 
+	padding-bottom: 10px;
+	padding-right: 10px;
+	border-bottom: solid 1px #e8e8e8;
+}
+.category ul li a{
+	text-decoration: none;
+	margin-left: 10px;	
+	color: #3f3f3f;
+}
+.promotion{
+	border: solid 1px #e8e8e8;
+	padding:10px;
+}
+.promotion b{
+	text-align: center;
+	margin:11%;
+	border-bottom: solid 1px #e8e8e8;
+	padding-bottom: 5px;
+}
+.promotion ul li{
+	margin-top: 10px;
+	border-bottom: solid 1px #e8e8e8;
+	padding-bottom: 10px;
+	list-style: none;
+	display: inline-block;
+}
+.promotion ul li .image{
+	float: left;
+}
+.promotion ul li .info{
+	float: left;
+	margin-left: 5px;
+}
+.promotion ul li .info a{
+	display: block;
+	text-decoration: none;
+	font-weight: 500;
+	color: #7aaedd;
+}
+
+.promotion ul li .info p{
+	display: inline;
+	color: #6986ca;
+}
+.promotion ul li .info p del{
+	color: #c8c8c8;
+}
+.fashion i{
+	padding: 15px;
+	margin-right: 10px;
+	color: white;
+	background-color:#ebb651;
+}
+.area-mid{
+	margin-top: 15px;
+}
+.border-color{
+	border-top: solid 5px #ebb651;
+	border-bottom: solid 1px #e8e8e8;
+	border-left: solid 1px #e8e8e8;
+	border-right: solid 1px #e8e8e8;
+}
+.category-fashion{
+	border: solid 1px #e8e8e8;
+}
+.category-fashion ul li{
+	padding-top:5px; 
+	padding-bottom: 5px;
+	padding-right: 5px;
+	border-bottom: solid 1px #e8e8e8;
+	list-style: none;
+}
+.category-fashion ul li.active{
+	background-color:#ebb651;
+}
+.category-fashion ul li:hover{
+
+	background-color:#ebb651;
+}
+.category-fashion ul li a{
+	text-decoration: none;
+	margin-left: 10px;	
+	color: #3f3f3f;
+}
+.row-cols-3{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.col .border{
+	border: solid 1px #e8e8e8;
+}
+.col .product{
+	width: 100%;
+}
+.col .product img{
+	width: 100%;
+}
+.col .product a{
+	text-decoration: none;
+	font-weight: 500;
+	font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    text-transform: none;
+    text-align: left;
+    border: none;
+    margin-bottom: 5px;
+    color: #3f3f3f;
+}
+.col .product a:hover{
+	color: #337ab7;
+}
+.col .product p{
+	color: #6986ca;
+}
+.col-3 .image-right{
+	width: 100%;
+}
+.image-right img{
+	width: 100%;
+	padding: 10px;
+}
+.area-bottom{
+	margin-top: 10px;
+	background-color: #353535;
+	color: white;
+	padding: 40px;
+}
+.support img{
+	float: left;
+}
+.support1{
+	margin-left: 10px;
+}
+footer{
+	background-color: black;
+	color: white;
+	padding: 40px;
+}
+.col p a{
+	text-decoration: none;
+	color: #999999;
+}
+.col p a:hover{
+	text-decoration: none;
+	color: #e8e8e8;
+}
+
+
+
