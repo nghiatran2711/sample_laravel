@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Post;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,10 +12,10 @@ class HomeController extends Controller
     public function index(){
         $data=[];
         $categories=Category::get();
-        $posts=Post::limit(6)->get();
+        $products=Product::limit(6)->get();
         $data['categories']=$categories;
-        $data['posts']=$posts;
-        return view('home',$data);
+        $data['products']=$products;
+        return view('main.content',$data);
 
     }
 }

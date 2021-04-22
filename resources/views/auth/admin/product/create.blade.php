@@ -5,12 +5,12 @@
 		<div class="container-fluid">
 		  <div class="row mb-2">
 			<div class="col-sm-6">
-			  <h1>Create Post</h1>
+			  <h1>Create Product</h1>
 			</div>
 			<div class="col-sm-6">
 			  <ol class="breadcrumb float-sm-right">
 				<li class="breadcrumb-item"><a href="#">Home</a></li>
-				<li class="breadcrumb-item active">Create Post</li>
+				<li class="breadcrumb-item active">Create Product</li>
 			  </ol>
 			</div>
 		  </div>
@@ -27,13 +27,20 @@
 				<!-- /.card-header -->
 				<!-- form start -->
 				@include('errors.error')
-				<form action="{{route('admin.post.store')}}" method="POST" enctype="multipart/form-data">
+				<form action="{{route('admin.product.store')}}" method="POST" enctype="multipart/form-data">
 					@csrf
 				  <div class="card-body">
 					<div class="form-group">
-					    <label for="exampleInputEmail1">Post Name</label>
-					    <input type="text" name="post_name" class="form-control" id="exampleInputEmail1" value="{{ old('post_name') }}">
-                        @error('post_name')
+					    <label for="exampleInputEmail1">Product Name</label>
+					    <input type="text" name="product_name" class="form-control" id="exampleInputEmail1" value="{{ old('product_name') }}">
+                        @error('product_name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">Description</label>
+					    <input type="text" name="description" class="form-control" id="exampleInputEmail1" value="{{ old('description') }}">
+                        @error('description')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -51,14 +58,14 @@
                     </div>
                     <div class="form-group">
 					    <label for="inputEmail4" class="form-label">Image</label>
-                        <input type="file" name="thumbnail" class="form-control" id="inputEmail4"">
-                        @error('thumbnail')
+                        <input type="file" name="image" class="form-control" id="inputEmail4"">
+                        @error('image')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 				  </div>
 				  <div class="card-footer">
-					<button type="submit" class="btn btn-primary">Create Post</button>
+					<button type="submit" class="btn btn-primary">Create Product</button>
 				  </div>
 				</form>
 			  </div>

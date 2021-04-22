@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTable extends Migration
+class CreatePricesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('prices', function (Blueprint $table) {
             $table->id();
-            $table->string('post_name');
-            $table->text('post_content');
-            $table->unsignedBigInteger('category_id');
+            $table->dateTime('date');
+            $table->decimal('price', $precision = 10, $scale = 0);
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
-            $table->softDeletes();
-            $table->foreign('category_id')->references('id')->on('categories');
+
         });
     }
 
@@ -31,6 +31,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');    
+        Schema::dropIfExists('prices');
     }
 }

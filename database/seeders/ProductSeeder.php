@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class PostSeeder extends Seeder
+class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,13 +21,14 @@ class PostSeeder extends Seeder
             $date = date('Y-m-d H:i:s');
             foreach ($categories as $category) {
                 $dataInsert = [
-                    'post_name' => Str::random(40),
+                    'name' => Str::random(20),
+                    'description'=>Str::random(40),
+                    'image'=>'image.jpg',
                     'category_id' => $category->id,
                     'created_at' => $date,
                     'updated_at' => $date,
-                    'thumbnail'=> 'https://placeimg.com/100/100/any',
                 ];
-                DB::table('posts')->insert($dataInsert);
+                DB::table('products')->insert($dataInsert);
             }
         }
     }

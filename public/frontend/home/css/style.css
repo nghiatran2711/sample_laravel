@@ -43,6 +43,7 @@ li.top-search button{
 	width: 100%;
 	height: 100px;
 	padding-top: 25px;
+  	box-shadow: 1px 1px 6px 1px #888888;
 }
 .header-bottom .nav-menu{
 	margin-left: 310px;
@@ -52,11 +53,16 @@ li.top-search button{
 	height: 40px;
 	margin-left: 20px;
 }
+.cart a{
+	text-decoration: none;
+	color: black;
+}
 .cart i{
 	background-color: #7aaedd;
 	padding:11px;
 	color: white;
 }
+
 .category{
 	border: solid 1px #e8e8e8;
 }
@@ -210,6 +216,84 @@ footer{
 	text-decoration: none;
 	color: #e8e8e8;
 }
-
+.over{
+	border-bottom: solid 1px #aaaaaa;
+}
+.over .title{
+	display: flex;
+}
+.over .title a{
+	text-decoration: none;
+	color: #aaaaaa;
+	border-bottom: solid 4px #7aaedd;
+}
+.over .title a:hover{
+	color: red;
+}
+.over .title p{
+	font-weight: 500;
+	color: black;
+}
+.over .name{
+	color: #7aaedd;
+}
+.mid{
+	margin-top: 10px;
+}
+input[type=number]{
+    width:50px;
+} 
+.menu-cart{
+	background-color: #7aaedd;
+	color: white;
+}
+.price-cart{
+	color: #7aaedd;
+}
+.below{
+	width: 100%;
+	display: flex;
+}
+.below .below-right{
+	float: right;
+}
+.below-right p{
+	font-size: 14px;
+	font-weight: 500;
+}
+.below-right h4{
+	color: #7aaedd;
+}
+.address{
+	border: solid 1px #aaaaaa;
+}
+.title-address p{
+	padding: 10px;
+	color: white;
+	font-weight: 500;
+	background-color: #7aaedd;
+}
+.content-address{
+	padding: 5px;
+}
+.content-address h2{
+	color: #2c3e50;
+    font-size: 16px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+.content-address a{
+	color: red;
+	text-decoration: none;
+}
+.content-address p{
+	color: #0082dd;
+}
+.form-address{
+	padding: 5px;
+}
+.form-address .form-group{
+	margin-bottom: 10px;
+}
 
 

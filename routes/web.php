@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -29,6 +31,9 @@ require __DIR__.'/auth.php';
 Route::get('/signup-form',function(){
     return view('signup.signup');
 });
+//cart
+Route::get('/cart',[CartController::class,'view'])->name('cart');
+Route::get('/check-out',[CheckOutController::class,'view_check_out'])->name('view_check_out');
 Route::post('/signup', function (Request $request){ 
     // $datarequest=$request->all();
     // $dataInsert=[

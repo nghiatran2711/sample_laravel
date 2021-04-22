@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 
 /*
@@ -76,14 +76,14 @@ use App\Http\Controllers\Admin\UserController;
 			Route::delete('/delete/{id}', [CategoryController::class, 'destroy'])->name('destroy');
 		});
 	
-		Route::group(['prefix' => 'post', 'as' => 'post.'], function () {
-			Route::get('/list', [PostController::class, 'index'])->name('index');
-			Route::get('/create', [PostController::class, 'create'])->name('create');
-			Route::post('/store', [PostController::class, 'store'])->name('store');
-			Route::get('/show/{id}', [PostController::class, 'show'])->name('show');
-			Route::get('/edit/{id}', [PostController::class, 'edit'])->name('edit');
-			Route::put('/update/{id}', [PostController::class, 'update'])->name('update');
-			Route::delete('/delete/{id}', [PostController::class, 'destroy'])->name('destroy');
+		Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
+			Route::get('/list', [ProductController::class, 'index'])->name('index');
+			Route::get('/create', [ProductController::class, 'create'])->name('create');
+			Route::post('/store', [ProductController::class, 'store'])->name('store');
+			Route::get('/show/{id}', [ProductController::class, 'show'])->name('show');
+			Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('edit');
+			Route::put('/update/{id}', [ProductController::class, 'update'])->name('update');
+			Route::delete('/delete/{id}', [ProductController::class, 'destroy'])->name('destroy');
 		});
 	});
 	

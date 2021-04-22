@@ -293,21 +293,21 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Post
+                Product
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('admin.post.index') }}" class="nav-link">
+                <a href="{{ route('admin.product.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>List Post</p>
+                  <p>List Product</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('admin.post.create') }}" class="nav-link">
+                <a href="{{ route('admin.product.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Create Post</p>
+                  <p>Create Product</p>
                 </a>
               </li>
             </ul>

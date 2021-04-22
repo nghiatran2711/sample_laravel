@@ -11,12 +11,12 @@
 		<div class="container-fluid">
 		  <div class="row mb-2">
 			<div class="col-sm-6">
-			  <h1>Edit Post</h1>
+			  <h1>Edit Product</h1>
 			</div>
 			<div class="col-sm-6">
 			  <ol class="breadcrumb float-sm-right">
 				<li class="breadcrumb-item"><a href="#">Home</a></li>
-				<li class="breadcrumb-item active">Edit Post</li>
+				<li class="breadcrumb-item active">Edit Product</li>
 			  </ol>
 			</div>
 		  </div>
@@ -33,14 +33,29 @@
 				<!-- /.card-header -->
 				<!-- form start -->
 				@include('errors.error')
-				<form action="{{ route('admin.post.update',['id'=>$post->id]) }}" method="POST" enctype="multipart/form-data">
+				<form action="{{ route('admin.product.update',['id'=>$product->id]) }}" method="POST" enctype="multipart/form-data">
 					@csrf
 					@method('PUT')
 					<div class="card-body">
 						<div class="form-group">
-							<label for="exampleInputEmail1">Post Name</label>
-							<input type="text" name="post_name" class="form-control" id="exampleInputEmail1" value="{{ $post->post_name }}">
-							@error('post_name')
+							<label for="exampleInputEmail1">Product Name</label>
+							<input type="text" name="product_name" class="form-control" id="exampleInputEmail1" value="{{ $product->name }}">
+							@error('product_name')
+								<div class="alert alert-danger">{{ $message }}</div>
+							@enderror
+						</div>
+						<div class="form-group">           
+							<label>Description</label>
+							<textarea name="description" id="" cols="143" rows="5">{{ $product->description }}</textarea>
+							@error('description')
+								<div class="alert alert-danger">{{ $message }}</div>
+							@enderror
+						</div>
+						<div class="form-group">
+							<label for="inputEmail4" class="form-label">Image</label>
+							<img src="{{ asset($product->image) }}" alt="" width="150px">
+							<input type="file" name="image" class="form-control" id="inputEmail4">
+							@error('image')
 								<div class="alert alert-danger">{{ $message }}</div>
 							@enderror
 						</div>
@@ -49,7 +64,7 @@
 							<select class="form-control select2" style="width: 100%;" name="category_id">
 								<option value=""></option>        
 								@foreach ($category as $key => $value  )
-									@if ($value->id==$post->category_id)
+									@if ($value->id==$product->category_id)
 										<option value="{{ $value->id }}" selected>{{ $value->category_name }}</option>
 										@error('category_id')
 										<div class="alert alert-danger">{{ $message }}</div>
@@ -60,22 +75,9 @@
 								@endforeach
 							</select>
 						</div>
-						<div class="form-group">           
-							<label>Content</label>
-							<textarea name="content" id="" cols="143" rows="5"></textarea>
-						</div>
-
-						<div class="form-group">
-							<label for="inputEmail4" class="form-label">Image</label>
-							<img src="{{ asset($post->thumbnail) }}" alt="" width="300px">
-							<input type="file" name="thumbnail" class="form-control" id="inputEmail4">
-							@error('thumbnail')
-								<div class="alert alert-danger">{{ $message }}</div>
-							@enderror
-						</div>
 					  </div>
 				  <div class="card-footer">
-					<button type="submit" class="btn btn-primary">Update Category</button>
+					<button type="submit" class="btn btn-primary">Update Product</button>
 				  </div>
 				</form>
 			  </div>

@@ -18,7 +18,9 @@ class CategorySeeder extends Seeder
         $data=[
             ['category_name'=>'PHP'],
             ['category_name'=>'CSS'],
-            ['category_name'=>'JS']
+            ['category_name'=>'JS'],
+            ['category_name'=>'SQL'],
+            ['category_name'=>'HTML']
         ];
         DB::table('categories')->insert($data);
     }
